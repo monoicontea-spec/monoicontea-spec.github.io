@@ -14,6 +14,8 @@
     btnPrev: document.getElementById("btn-prev"),
     btnNext: document.getElementById("btn-next"),
     btnToday: document.getElementById("btn-today"),
+    btnRefresh: document.getElementById("btn-refresh"),
+    syncStatus: document.getElementById("sync-status"),
   };
 
   /** Return a Date representing today in KST (midnight KST as UTC timestamp) */
@@ -67,12 +69,14 @@
   }
 
   function renderStudentCard(student) {
-    const modeClass = student.mode === "online" ? "badge-online" : "badge-offline";
-    const modeLabel = MODE_LABELS[student.mode] || student.mode;
+    const badgeHtml =
+      student.mode != null
+        ? `<span class="badge ${student.mode === "online" ? "badge-online" : "badge-offline"}">${MODE_LABELS[student.mode] || student.mode}</span>`
+        : "";
     return `
       <div class="student-card">
         <span class="student-name">${escapeHtml(student.name)}</span>
-        <span class="badge ${modeClass}">${modeLabel}</span>
+        ${badgeHtml}
       </div>`;
   }
 
@@ -205,6 +209,10 @@
       render();
     });
 
+    els.btnRefresh.addEventListener("click", () => {
+      reloadSchedule(true);
+    });
+
     let resizeTimer;
     window.addEventListener("resize", () => {
       clearTimeout(resizeTimer);
@@ -212,18 +220,44 @@
     });
   }
 
-  async function init() {
-    els.grid.innerHTML = '<div class="loading">일정을 불러오는 중…</div>';
+  function setSyncStatus(message, isError) {
+    if (!els.syncStatus) return;
+    els.syncStatus.textContent = message;
+    els.syncStatus.classList.toggle("sync-error", !!isError);
+  }
+
+  async function reloadSchedule(manual) {
+    if (manual) {
+      els.btnRefresh.disabled = true;
+      setSyncStatus("시트에서 불러오는 중…");
+    }
 
     try {
       scheduleData = await loadSchedule();
       if (els.title) els.title.textContent = scheduleData.title;
       document.title = `${scheduleData.title} — 주간 일정`;
-      initEvents();
+
+      const now = new Date().toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" });
+      const sourceLabel = scheduleData.source === "sheet" ? "Google Sheets" : "로컬 백업";
+      setSyncStatus(`${sourceLabel} · ${now} 갱신`);
       render();
     } catch (err) {
-      els.grid.innerHTML = `<div class="error">${escapeHtml(err.message)}</div>`;
+      setSyncStatus(err.message, true);
+      if (!scheduleData) {
+        els.grid.innerHTML = `<div class="error">${escapeHtml(err.message)}</div>`;
+      }
+    } finally {
+      if (manual) els.btnRefresh.disabled = false;
     }
+  }
+
+  async function init() {
+    els.grid.innerHTML = '<div class="loading">일정을 불러오는 중…</div>';
+
+    initEvents();
+    await reloadSchedule(false);
+
+    setInterval(() => reloadSchedule(false), 5 * 60 * 1000);
   }
 
   init();

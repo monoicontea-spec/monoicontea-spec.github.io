@@ -109,6 +109,27 @@ body {
   border-color: #2563eb;
 }
 
+.nav-btn-refresh {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #15803d;
+}
+
+.nav-btn-refresh:hover {
+  background: #dcfce7;
+}
+
+.sync-status {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+  padding-left: 4px;
+}
+
+.sync-status.sync-error {
+  color: #dc2626;
+}
+
 /* Grid */
 .grid-wrap {
   overflow-x: auto;
