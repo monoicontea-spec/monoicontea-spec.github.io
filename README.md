@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Replace GITHUB_USERNAME with your actual GitHub ID after creating the repository -->
-<img src="https://github.com/GITHUB_USERNAME.png" width="120" alt="Profile photo" />
+<!-- push-to-github.ps1 실행 시 GITHUB_USERNAME이 자동으로 본인 ID로 교체됩니다 -->
+<img src="https://github.com/GITHUB_USERNAME.png" width="120" alt="Yook Ho Joon" />
 
 # 육호준 (Yook Ho Joon)
 
