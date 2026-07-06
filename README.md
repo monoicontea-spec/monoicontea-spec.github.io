@@ -1,5 +1,3 @@
-<div align="center">
-
 <!-- push-to-github.ps1 실행 시 GITHUB_USERNAME이 자동으로 본인 ID로 교체됩니다 -->
 <img src="https://github.com/GITHUB_USERNAME.png" width="120" alt="Yook Ho Joon" />
 
@@ -13,8 +11,6 @@
 
 **UI/UX 디자인 교육과 디지털 조형 작품 활동**  
 *UI/UX design education and digital formative art practice*
-
-</div>
 
 ---
 
@@ -118,8 +114,4 @@
 
 ---
 
-<div align="center">
-
 *Last updated: July 2026*
-
-</div>
