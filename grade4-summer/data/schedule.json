@@ -7,20 +7,27 @@
       "mon": [{ "name": "전해인", "mode": "online" }]
     },
     "11시": {
-      "mon": [{ "name": "심진영", "mode": "offline" }],
-      "tue": [{ "name": "황윤정", "mode": "offline" }],
-      "wed": [{ "name": "유혜정", "mode": "offline" }],
-      "thu": [{ "name": "이현슬", "mode": "online" }],
-      "fri": [{ "name": "박다온", "mode": "online" }]
+      "tue": [
+        { "name": "심진영", "mode": "offline" },
+        { "name": "유혜정", "mode": "offline" },
+        { "name": "이현슬", "mode": "online" },
+        { "name": "박다온", "mode": "online" }
+      ],
+      "thu": [{ "name": "황윤정", "mode": "offline" }]
     },
     "12시": {
-      "mon": [{ "name": "손승수", "mode": "offline" }]
+      "tue": [{ "name": "손승수", "mode": "offline" }],
+      "thu": [{ "name": "Sunsia Yooki", "mode": "offline" }]
     },
     "1시": {
-      "mon": [{ "name": "신정현", "mode": "offline" }],
-      "tue": [{ "name": "문채원", "mode": "offline" }],
-      "wed": [{ "name": "김소연", "mode": "offline" }],
-      "thu": [{ "name": "문규린", "mode": "offline" }]
+      "mon": [
+        { "name": "신정현", "mode": "offline" },
+        { "name": "김소연", "mode": "offline" }
+      ],
+      "tue": [
+        { "name": "문채원", "mode": "offline" },
+        { "name": "문규린", "mode": "offline" }
+      ]
     }
   }
 }
